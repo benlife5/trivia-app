@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState, useEffect} from "react";
 
 function App() {
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    fetch("https://opentdb.com/api.php?amount=10")
+    .then(res => res.json())
+    .then(res => {console.log(res.results); setQuestions(res.results)});
+  }, [])
+
+
+  const displayQuestion = (question) => {
+    let potentialAnswers = question.incorrect_answers.concat(question.correct_answer);
+    return (
+      <h4>{question.question}</h4>
+    )
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> Trivia! </h1>
+      {
+        questions.map(displayQuestion)
+      }
     </div>
   );
 }
