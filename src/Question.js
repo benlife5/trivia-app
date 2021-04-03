@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {decode} from 'html-entities';
 
 function Question(props) {
   const question = props.question;
@@ -29,8 +30,8 @@ function Question(props) {
 
   return (
     <>
-      <h4>{question.question}</h4>
-      {potentialAnswers.map(answer => <input type="submit" disabled={disabled} value={answer} key={answer} onClick={() => answerSelected(answer)}/>)}
+      <h4>{decode(question.question)}</h4>
+      {potentialAnswers.map(answer => <input type="submit" disabled={disabled} value={decode(answer)} key={answer} onClick={() => answerSelected(answer)}/>)}
       {displayResult}
     </>
   );
