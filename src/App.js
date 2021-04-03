@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <h1> Trivia! </h1>
       {
-        questions.map((question) => <Question question={question} />)
+        questions.map((question) => <Question question={question} key={question.question} />)
       }
     </div>
   );

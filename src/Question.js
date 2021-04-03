@@ -17,7 +17,7 @@ function Question(props) {
     <>
       <h4>{question.question}</h4>
       {
-        potentialAnswers.map(answer => <input type="submit" value={answer} />)
+        potentialAnswers.map(answer => <input type="submit" value={answer} key={answer} />)
       }
     </>
   );
