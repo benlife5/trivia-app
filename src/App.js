@@ -1,5 +1,6 @@
 import './App.css';
 import {useState, useEffect} from "react";
+import Question from "./Question.js";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -7,36 +8,18 @@ function App() {
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=10")
     .then(res => res.json())
-    .then(res => {console.log(res.results); setQuestions(res.results)});
+    .then(res => {
+      console.log(res.results); 
+      res.results.map(question => question.answered=false);
+      setQuestions(res.results);
+    })
   }, [])
-
-
-  const displayQuestion = (question) => {
-    let randomLocation;
-    if (question.type === "multiple") {
-      randomLocation = Math.floor(Math.random() * 3)
-    } else {
-      randomLocation = Math.floor(Math.random() * 2)
-    }
-    
-    let potentialAnswers = [...question.incorrect_answers];
-    potentialAnswers.splice(randomLocation, 0, question.correct_answer);
-
-    return (
-      <>
-        <h4>{question.question}</h4>
-        {
-          potentialAnswers.map(answer => <input type="submit" value={answer} />)
-        }
-      </>
-    )
-  }
 
   return (
     <div className="App">
       <h1> Trivia! </h1>
       {
-        questions.map(displayQuestion)
+        questions.map((question) => <Question question={question} />)
       }
     </div>
   );
