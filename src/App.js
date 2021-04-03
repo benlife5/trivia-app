@@ -12,9 +12,23 @@ function App() {
 
 
   const displayQuestion = (question) => {
-    let potentialAnswers = question.incorrect_answers.concat(question.correct_answer);
+    let randomLocation;
+    if (question.type === "multiple") {
+      randomLocation = Math.floor(Math.random() * 3)
+    } else {
+      randomLocation = Math.floor(Math.random() * 2)
+    }
+    
+    let potentialAnswers = [...question.incorrect_answers];
+    potentialAnswers.splice(randomLocation, 0, question.correct_answer);
+
     return (
-      <h4>{question.question}</h4>
+      <>
+        <h4>{question.question}</h4>
+        {
+          potentialAnswers.map(answer => <input type="submit" value={answer} />)
+        }
+      </>
     )
   }
 
