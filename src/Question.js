@@ -16,7 +16,6 @@ function Question(props) {
   let potentialAnswers = [...question.incorrect_answers];
   potentialAnswers.splice(randomLocation, 0, question.correct_answer);
 
-
   const answerSelected = (answer) => {
     setDisabled(true);
     if (answer === question.correct_answer) {
@@ -25,8 +24,6 @@ function Question(props) {
         setDisplayResult(<p>Incorrect. The answer was {decode(question.correct_answer)}.</p>);
     }
   }
-
-
 
   return (
     <>
