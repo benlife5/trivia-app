@@ -5,6 +5,7 @@ function Question(props) {
   const question = props.question;
   const [disabled, setDisabled] = useState(false);
   const [displayResult, setDisplayResult] = useState(<></>);
+  const onAnswer = props.onAnswer;
 
   let randomLocation;
   if (question.type === "multiple") {
@@ -20,8 +21,10 @@ function Question(props) {
     setDisabled(true);
     if (answer === question.correct_answer) {
         setDisplayResult(<p>Correct! The answer was {decode(question.correct_answer)}.</p>);
+        onAnswer(true);
     } else {
         setDisplayResult(<p>Incorrect. The answer was {decode(question.correct_answer)}.</p>);
+        onAnswer(false);
     }
   }
 
