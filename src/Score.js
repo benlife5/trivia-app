@@ -1,10 +1,7 @@
-import {useState} from "react";
-
 function Score (props) {
   const unanswered = props.unanswered;
   const correct = props.correct;
   const incorrect = props.incorrect;
-
 
   return (
     <div>

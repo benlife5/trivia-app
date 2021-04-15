@@ -9,7 +9,6 @@ function App() {
   const [numOfUnansweredQuestions, setNumOfUnansweredQuestions] = useState(0);
   const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState(0);
   const [numOfIncorrectAnswers, setNumOfIncorrectAnswers] = useState(0);
-  // const setCounts = {setnumOfUnansweredQuestions, setNumOfCorrectAnswers, setNumOfInCorrectAnswers};
 
   useEffect(() => {
     generateQuestions();
@@ -39,9 +38,7 @@ function App() {
       <h1> Trivia! </h1>
       <Controls generateQuestions={generateQuestions} />
       <Score unanswered={numOfUnansweredQuestions} correct={numOfCorrectAnswers} incorrect={numOfIncorrectAnswers}/>
-      {
-        questions.map((question) => <Question question={question} onAnswer={onAnswer} key={question.question} />)
-      }
+      {questions.map((question) => <Question question={question} onAnswer={onAnswer} key={question.question} />)}
     </div>
   );
 }
