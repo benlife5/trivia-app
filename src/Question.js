@@ -20,9 +20,9 @@ function Question(props) {
   const answerSelected = (answer) => {
     setDisabled(true);
     if (answer === question.correct_answer) {
-        setDisplayResult(<p>Correct! The answer was {question.correct_answer}.</p>);
+        setDisplayResult(<p>Correct! The answer was {decode(question.correct_answer)}.</p>);
     } else {
-        setDisplayResult(<p>Incorrect. The answer was {question.correct_answer}.</p>);
+        setDisplayResult(<p>Incorrect. The answer was {decode(question.correct_answer)}.</p>);
     }
   }
 
