@@ -1,30 +1,46 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 function Controls(props) {
   const generateQuestions = props.generateQuestions;
-  const [inputValue, setInputValue] = useState("10");
+  const [numOfQuestionsInput, setNumOfQuestionsInput] = useState("10");
+  const [allCategories, setAllCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(0);
+
+  useEffect(() => {
+    fetch("https://opentdb.com/api_category.php")
+    .then((res) => res.json())
+    .then((res) => {
+      console.log("categories:", res);
+      setAllCategories(res.trivia_categories);
+    });
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue === "") {  // default number is 10
-      generateQuestions(10);
+    console.log(e)
+    if (numOfQuestionsInput === "") {  // default number is 10
+      generateQuestions(10, selectedCategory);
     } else {
-      generateQuestions(inputValue);
+      generateQuestions(numOfQuestionsInput, selectedCategory);
     }
   }
 
-  const handleChange = (e) => {
-    const input = parseInt(e.target.value);
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  }
+
+  const handleNumInput = (e) => {
+    const parsedInput = parseInt(e.target.value);
 
     // API can only handle 1-50 question requests
     if (e.target.value === "") {
-      setInputValue("");
-    } else if (input > 50) {
-      setInputValue(50);
-    } else if (input < 1) {
-      setInputValue(1);
-    } else if (!isNaN(input)) {
-      setInputValue(input);
+      setNumOfQuestionsInput("");
+    } else if (parsedInput > 50) {
+      setNumOfQuestionsInput(50);
+    } else if (parsedInput < 1) {
+      setNumOfQuestionsInput(1);
+    } else if (!isNaN(parsedInput)) {
+      setNumOfQuestionsInput(parsedInput);
     }
   }
 
@@ -33,11 +49,17 @@ function Controls(props) {
       <form onSubmit={handleSubmit}>
         <input type="submit" value="New Questions" />
         <br />
-        <input type="text" placeholder="10" value={inputValue} maxLength="2" size="2" id="num-of-questions-box" onChange={handleChange}/>
-        <label htmlFor="num-of-questions-box"> questions</label> 
+        <input type="text" placeholder="10" value={numOfQuestionsInput} maxLength="2" size="2" id="num-of-questions-box" onChange={handleNumInput}/>
+        <label htmlFor="num-of-questions-box"> questions</label>
+        <br /> 
+        <select name="category-selection" id="category-selection" onChange={handleCategoryChange}>
+          <option value={0} key={0}> All Categories </option>
+          {allCategories.map((category) => <option value={category.id} key={category.id}> {category.name} </option>)}
+        </select>
       </form>
     </div>
   )
 }
 
 export default Controls;
+//          

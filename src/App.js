@@ -7,11 +7,11 @@ function App() {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    generateQuestions(10);
+    generateQuestions();
   }, []);
 
-  const generateQuestions = (numOfQuestions) => {
-    fetch("https://opentdb.com/api.php?amount=" + numOfQuestions)
+  const generateQuestions = (numOfQuestions=10, categoryID=0) => {
+    fetch("https://opentdb.com/api.php?amount=" + numOfQuestions + "&category=" + categoryID)
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
