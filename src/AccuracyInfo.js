@@ -1,5 +1,4 @@
 function AccuracyInfo (props) {
-    const unanswered = props.unanswered;
     const correct = props.correct;
     const incorrect = props.incorrect;
   
@@ -18,7 +17,6 @@ function AccuracyInfo (props) {
         <div className="accuracy-info">
           <p>
             Correct: {formatter.format(percentageCorrect)} ({correct}/{correct + incorrect}) 
-            {/* Incorrect: {formatter.format(percentageIncorrect)} ({incorrect}/{correct + incorrect}) */}
           </p>
         </div>
       );
