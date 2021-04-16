@@ -1,4 +1,7 @@
 import {useState, useEffect} from "react";
+import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 function Controls(props) {
   const generateQuestions = props.generateQuestions;
@@ -47,15 +50,15 @@ function Controls(props) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="submit" value="New Questions" />
-        <br />
-        <input type="text" placeholder="10" value={numOfQuestionsInput} maxLength="2" size="2" id="num-of-questions-box" onChange={handleNumInput}/>
-        <label htmlFor="num-of-questions-box"> questions</label>
-        <br /> 
-        <select name="category-selection" id="category-selection" onChange={handleCategoryChange}>
-          <option value={0} key={0}> All Categories </option>
-          {allCategories.map((category) => <option value={category.id} key={category.id}> {category.name} </option>)}
-        </select>
+        <Button type="submit" variant="contained" color="secondary">New Questions</Button>
+        <div className="question-input">
+          <input type="text" placeholder="10" value={numOfQuestionsInput} maxLength="2" size="2" id="num-of-questions-box" onChange={handleNumInput}/>
+          <label htmlFor="num-of-questions-box"> Questions</label>
+        </div>
+        <Select name="category-selection" id="category-selection" defaultValue={0} onChange={handleCategoryChange}>
+          <MenuItem value={0} key={0}> All Categories </MenuItem>
+          {allCategories.map((category) => <MenuItem value={category.id} key={category.id}> {category.name} </MenuItem>)}
+        </Select>
       </form>
     </div>
   )

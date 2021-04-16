@@ -35,13 +35,14 @@ function App() {
 
   return (
     <div className="App">
-      <div className="top-of-page">
+      <div className="sidebar">
         <h1 className="title"> T R I V I A </h1>
         <AccuracyInfo unanswered={numOfUnansweredQuestions} correct={numOfCorrectAnswers} incorrect={numOfIncorrectAnswers}/>
+        <Controls generateQuestions={generateQuestions} />
       </div>
-      
-      <Controls generateQuestions={generateQuestions} />
-      {questions.map((question) => <Question question={question} onAnswer={onAnswer} key={question.question} />)}
+      <div className="questions-container">
+        {questions.map((question) => <Question question={question} onAnswer={onAnswer} key={question.question} />)}
+      </div>
     </div>
   );
 }

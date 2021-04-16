@@ -2,14 +2,27 @@
   text-align: center;
 }
 
-.top-of-page {
+.sidebar {
   background-color: blue;
   padding: 1%;
+  margin: 0px;
   font-family: 'Roboto';
   position: fixed;
-  width: 10%
+  width: 10%;
+  min-width: 150px;
+  height: 100%;
+  top: 0px;
+  left: 0px;
 }
 
-.title, .accuracy-info p {
-  margin: 0px;
+.sidebar *{
+  margin-top: 1%;
 }
+
+.question-input {
+  margin: 10%;
+}
+
+/* .title, .accuracy-info p {
+  margin: 0px;
+} */
