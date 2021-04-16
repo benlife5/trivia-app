@@ -23,6 +23,6 @@
   margin: 10%;
 }
 
-/* .title, .accuracy-info p {
-  margin: 0px;
-} */
+.questions-container {
+  margin-left: max(175px, 10%);
+}
