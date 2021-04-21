@@ -50,7 +50,7 @@ function Controls(props) {
   return (
     <div className="generate-questions-form">
       <form onSubmit={handleSubmit}>
-        <Button type="submit" variant="contained" color="secondary">New Questions</Button>
+        <Button type="submit" variant="contained">New Questions</Button>
         <div className="question-input">
           <input type="text" placeholder="10" value={numOfQuestionsInput} maxLength="2" size="2" id="num-of-questions-box" onChange={handleNumInput}/>
           <label htmlFor="num-of-questions-box"> Questions</label>

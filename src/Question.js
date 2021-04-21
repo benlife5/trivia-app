@@ -38,7 +38,7 @@ function Question(props) {
       <CardContent>
         <Typography variant="h6"> {decode(question.question)} </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions className="question-card-buttons">
         {potentialAnswers.map(answer => <Button type="submit" disabled={disabled} value={decode(answer)} size="small" key={answer} onClick={() => answerSelected(answer)}> {decode(answer)} </Button>)}
       </CardActions>
       

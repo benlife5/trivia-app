@@ -2,16 +2,17 @@
   text-align: center;
   display: flex;
   justify-content: space-around;
+  background-color: #E8E8E8;
 }
 
 .sidebar {
-  background-color: blue;
+  background-color: #3F84E5;
   padding: 1%;
   margin: 0px;
   font-family: 'Roboto';
   position: fixed;
   width: 15%;
-  min-width: 150px;
+  min-width: 200px;
   height: 100%;
   top: 0px;
   left: 0px;
@@ -26,12 +27,14 @@
 }
 
 .questions-container {
-  margin-left: max(175px, 15%);
+  margin-left: max(200px, 15%);
   width: 50%;
+  
 }
 
 .MuiCard-root {
   margin: 2.5%;
+  background-color: #C0C0C0;
 }
 
 .MuiCardActions-root {
@@ -40,4 +43,8 @@
 
 .generate-questions-form {
   margin: 10%;
+}
+
+.MuiButton-root {
+  text-transform: none;
 }
