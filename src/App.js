@@ -3,6 +3,8 @@ import {useState, useEffect} from "react";
 import Question from "./Question.js";
 import Controls from "./Controls.js";
 import AccuracyInfo from "./AccuracyInfo.js";
+import Typography from '@material-ui/core/Typography';
+
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -36,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <div className="sidebar">
-        <h1 className="title"> T R I V I A </h1>
+        <Typography variant="h2" className="title"> TRIVIA </Typography>
         <AccuracyInfo unanswered={numOfUnansweredQuestions} correct={numOfCorrectAnswers} incorrect={numOfIncorrectAnswers}/>
         <Controls generateQuestions={generateQuestions} />
       </div>

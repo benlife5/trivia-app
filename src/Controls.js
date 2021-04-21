@@ -48,7 +48,7 @@ function Controls(props) {
   }
 
   return (
-    <div>
+    <div className="generate-questions-form">
       <form onSubmit={handleSubmit}>
         <Button type="submit" variant="contained" color="secondary">New Questions</Button>
         <div className="question-input">

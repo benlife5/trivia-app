@@ -37,3 +37,7 @@
 .MuiCardActions-root {
   justify-content: center;
 }
+
+.generate-questions-form {
+  margin: 10%;
+}
