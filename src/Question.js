@@ -1,5 +1,17 @@
 import {useState} from "react";
 import {decode} from 'html-entities';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  pos: {
+    marginBottom: 12,
+  },
+});
 
 function Question(props) {
   const question = props.question;
@@ -29,11 +41,16 @@ function Question(props) {
   }
 
   return (
-    <>
-      <h4>{decode(question.question)}</h4>
-      {potentialAnswers.map(answer => <input type="submit" disabled={disabled} value={decode(answer)} key={answer} onClick={() => answerSelected(answer)}/>)}
-      {displayResult}
-    </>
+    <Card variant="outlined" className="question-card">
+      <CardContent>
+        <Typography variant="h6"> {decode(question.question)} </Typography>
+      </CardContent>
+      <CardActions>
+        {potentialAnswers.map(answer => <Button type="submit" disabled={disabled} value={decode(answer)} size="small" key={answer} onClick={() => answerSelected(answer)}> {decode(answer)} </Button>)}
+      </CardActions>
+      
+      <Typography variant="subtitle1"> {displayResult} </Typography>
+    </Card>
   );
 }
 
