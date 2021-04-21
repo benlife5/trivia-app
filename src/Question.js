@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {decode} from 'html-entities';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,15 +9,17 @@ import Button from '@material-ui/core/Button';
 function Question(props) {
   const question = props.question;
   const [disabled, setDisabled] = useState(false);
+  const [randomLocation, setRandomLocation] = useState(0);
   const [displayResult, setDisplayResult] = useState(<></>);
   const onAnswer = props.onAnswer;
 
-  let randomLocation;
-  if (question.type === "multiple") {
-    randomLocation = Math.floor(Math.random() * 3)
-  } else {
-    randomLocation = Math.floor(Math.random() * 2)
-  }
+  useEffect(() => {
+    if (question.type === "multiple") {
+      setRandomLocation(Math.floor(Math.random() * 3));
+    } else {
+      setRandomLocation(Math.floor(Math.random() * 2));
+    }
+  }, [question.type]);
   
   let potentialAnswers = [...question.incorrect_answers];
   potentialAnswers.splice(randomLocation, 0, question.correct_answer);
