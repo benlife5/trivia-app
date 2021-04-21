@@ -15,7 +15,7 @@ function Question(props) {
 
   useEffect(() => {
     if (question.type === "multiple") {
-      setRandomLocation(Math.floor(Math.random() * 3));
+      setRandomLocation(Math.floor(Math.random() * 4));
     } else {
       setRandomLocation(Math.floor(Math.random() * 2));
     }
