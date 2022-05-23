@@ -18,9 +18,6 @@ function App() {
   const [longitude, setLongitude]=useState(-77.3233);
   const [icon, setIcon]=useState();
   const [articles, setArticles]=useState([]);
-  //const [numOfUnansweredQuestions, setNumOfUnansweredQuestions] = useState(0);
-  //const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState(0);
-  //const [numOfIncorrectAnswers, setNumOfIncorrectAnswers] = useState(0);
 
   useEffect(() => {
     generateLatitudeAndLongitude()
@@ -29,22 +26,13 @@ function App() {
     generateArticles();
   }, []);
 
-  /*const generateQuestions = (numOfQuestions=10, categoryID=0) => {
-    fetch("https://opentdb.com/api.php?amount=" + numOfQuestions + "&category=" + categoryID)
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res);
-      setQuestions(res.results);
-    });
-    setNumOfUnansweredQuestions(numOfQuestions);
-  }*/
+  
 
 
   const generateWeather = (latitude=38.8852, longitude=-77.3233) => {
     
     console.log("IS CALLED2");
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latitude.toString()+"&lon="+longitude.toString()+"&appid=6994f82b8116af4a1c68d8d86885d40e")
-    //fetch("https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=6994f82b8116af4a1c68d8d86885d40e")
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
@@ -100,33 +88,19 @@ function App() {
     });
   }
 
-  //console.log("Testing1: "+latData.lat.toString());
-  //console.log("Testing2: "+latData.lon.toString());
-  
-  /*const onAnswer = (correct) => {
-    setNumOfUnansweredQuestions((previous) => previous - 1);
-    if (correct) {
-      setNumOfCorrectAnswers((previous) => previous + 1);
-    } else {
-      setNumOfIncorrectAnswers((previous) => previous + 1);
-    }
-  }*/
 
   
 
   return (
-    <Switch>
       <div className="App">
         <div className="sidebar">
           <Typography variant="h2" className="title"> WEATHER </Typography>
-          <>{/*<AccuracyInfo unanswered={numOfUnansweredQuestions} correct={numOfCorrectAnswers} incorrect={numOfIncorrectAnswers}/>*/}</>
           {<Controls  data={latData} generateArticles={generateArticles} generateIcon={generateIcon} generateWeather={generateWeather} generateLatitudeAndLongitude={generateLatitudeAndLongitude} />}
         </div>
-        <>{/*questions.map((question) => <Question question={question} onAnswer={onAnswer} key={question.question} />)*/}</>
-        <CurrentWeather  articles={articles} icon={icon} data={weatherData} generateArticles={generateArticles} generateWeather={generateWeather}/>
-        
+        <div className="cards">
+          <CurrentWeather  articles={articles} icon={icon} data={weatherData} generateArticles={generateArticles} generateWeather={generateWeather}/>
+        </div>
       </div>
-    </Switch>
   );
 }
 
