@@ -9,6 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CurrentWeather from "./CurrentWeather.jsx";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   const [latData, setLatData] = useState([]);
@@ -114,16 +115,18 @@ function App() {
   
 
   return (
-    <div className="App">
-      <div className="sidebar">
-        <Typography variant="h2" className="title"> WEATHER </Typography>
-        <>{/*<AccuracyInfo unanswered={numOfUnansweredQuestions} correct={numOfCorrectAnswers} incorrect={numOfIncorrectAnswers}/>*/}</>
-        {<Controls  data={latData} generateArticles={generateArticles} generateIcon={generateIcon} generateWeather={generateWeather} generateLatitudeAndLongitude={generateLatitudeAndLongitude} />}
+    <Switch>
+      <div className="App">
+        <div className="sidebar">
+          <Typography variant="h2" className="title"> WEATHER </Typography>
+          <>{/*<AccuracyInfo unanswered={numOfUnansweredQuestions} correct={numOfCorrectAnswers} incorrect={numOfIncorrectAnswers}/>*/}</>
+          {<Controls  data={latData} generateArticles={generateArticles} generateIcon={generateIcon} generateWeather={generateWeather} generateLatitudeAndLongitude={generateLatitudeAndLongitude} />}
+        </div>
+        <>{/*questions.map((question) => <Question question={question} onAnswer={onAnswer} key={question.question} />)*/}</>
+        <CurrentWeather  articles={articles} icon={icon} data={weatherData} generateArticles={generateArticles} generateWeather={generateWeather}/>
+        
       </div>
-      <>{/*questions.map((question) => <Question question={question} onAnswer={onAnswer} key={question.question} />)*/}</>
-      <CurrentWeather  articles={articles} icon={icon} data={weatherData} generateArticles={generateArticles} generateWeather={generateWeather}/>
-      
-    </div>
+    </Switch>
   );
 }
 
