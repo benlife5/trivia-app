@@ -10,6 +10,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CurrentWeather from "./CurrentWeather.jsx";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ArticlesCard from './ArticlesCard';
+import WeatherApp from './WeatherApp';
+import NewsApp from './NewsApp';
 
 function App() {
   const [latData, setLatData] = useState([]);
@@ -91,15 +94,13 @@ function App() {
 
   
 
+  /**
+     * props: latData, generateArticles, generateIcons, generateWeather, generateLatitudeAndLongitude, articles, icon, weatherData
+     */
   return (
       <div className="App">
-        <div className="sidebar">
-          <Typography variant="h2" className="title"> WEATHER </Typography>
-          {<Controls  data={latData} generateArticles={generateArticles} generateIcon={generateIcon} generateWeather={generateWeather} generateLatitudeAndLongitude={generateLatitudeAndLongitude} />}
-        </div>
-        <div className="cards">
-          <CurrentWeather  articles={articles} icon={icon} data={weatherData} generateArticles={generateArticles} generateWeather={generateWeather}/>
-        </div>
+        <WeatherApp latData={latData} generateArticles={generateArticles} generateIcons={generateIcon} generateWeather={generateWeather} generateLatitudeAndLongitude={generateLatitudeAndLongitude} articles={articles} icon={icon} weatherData={weatherData}/>
+        <NewsApp articles={articles}/>
       </div>
   );
 }
