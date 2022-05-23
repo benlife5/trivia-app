@@ -12,8 +12,6 @@
   padding: 1%;
   margin: 0px;
   font-family: 'Roboto';
-  position: fixed;
-  width: 25%;
   min-width: 200px;
   height: 100%;
   top: 0px;
@@ -46,7 +44,7 @@
 }
 
 .generate-questions-form {
-  margin: 10%;
+  margin: 0%;
 }
 
 .MuiButton-root {
