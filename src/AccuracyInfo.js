@@ -12,12 +12,19 @@ function AccuracyInfo (props) {
     }
   
     const formatter = new Intl.NumberFormat(undefined, formattingOptions);
-    
+    /**
+     * <Typography variant="subtitle1">
+            Correct: {formatter.format(percentageCorrect)} ({correct}/{correct + incorrect}) 
+          </Typography>
+     */
     if (correct + incorrect !== 0) {
       return (
         <div className="accuracy-info">
           <Typography variant="subtitle1">
-            Correct: {formatter.format(percentageCorrect)} ({correct}/{correct + incorrect}) 
+            Latitude:
+          </Typography>
+          <Typography variant="subtitle1">
+            Longitude:
           </Typography>
         </div>
       );

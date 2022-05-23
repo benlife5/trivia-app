@@ -2,7 +2,9 @@
   text-align: center;
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
   background-color: #E8E8E8;
+  
 }
 
 .sidebar {
@@ -11,12 +13,14 @@
   margin: 0px;
   font-family: 'Roboto';
   position: fixed;
-  width: 15%;
+  width: 25%;
   min-width: 200px;
   height: 100%;
   top: 0px;
   left: 0px;
 }
+
+
 
 .sidebar *{
   margin-top: 1%;

@@ -1,64 +1,69 @@
+import './App.css';
 import {useState, useEffect} from "react";
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 function Controls(props) {
-  const generateQuestions = props.generateQuestions;
-  const [numOfQuestionsInput, setNumOfQuestionsInput] = useState("10");
-  const [allCategories, setAllCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(0);
+  const generateLatitudeAndLongitude = props.generateLatitudeAndLongitude;
+  const generateWeather=props.generateWeather;
+  const generateArticles=props.generateArticles;
+  const generateIcon=props.generateIcon;
+  const [zipCode, setZipCode] = useState("22124");
+  const [countryCode, setCountryCode] = useState("US");
 
-  useEffect(() => {
-    fetch("https://opentdb.com/api_category.php")
-    .then((res) => res.json())
-    .then((res) => {
-      console.log("categories:", res);
-      setAllCategories(res.trivia_categories);
-    });
-  }, [])
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
-    if (numOfQuestionsInput === "") {  // default number is 10
-      generateQuestions(10, selectedCategory);
-    } else {
-      generateQuestions(numOfQuestionsInput, selectedCategory);
+    //console.log(e)
+    if (zipCode === "" && countryCode==="") {  // default number is 10
+      generateLatitudeAndLongitude(22124, "US");
+    } else if(zipCode === "" && countryCode!==""){
+      generateLatitudeAndLongitude(22124, countryCode);
+    }else if(zipCode === "" && countryCode!==""){
+      generateLatitudeAndLongitude(zipCode, "US");
+    }else{
+      generateLatitudeAndLongitude(zipCode, countryCode);
     }
+
+    generateWeather(props.data.lat, props.data.lon);
+    generateArticles();
+    
   }
 
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
+  
+
+  const handleZipCode = (e) => {
+    setZipCode(e.target.value);
   }
 
-  const handleNumInput = (e) => {
-    const parsedInput = parseInt(e.target.value);
-
-    // API can only handle 1-50 question requests
-    if (e.target.value === "") {
-      setNumOfQuestionsInput("");
-    } else if (parsedInput > 50) {
-      setNumOfQuestionsInput(50);
-    } else if (parsedInput < 1) {
-      setNumOfQuestionsInput(1);
-    } else if (!isNaN(parsedInput)) {
-      setNumOfQuestionsInput(parsedInput);
-    }
+  const handleCountryCode = (e) => {
+    setCountryCode(e.target.value);
   }
 
+  console.log(zipCode);
+  console.log(countryCode);
+  //console.log("TEST: "+props.data.zip);
   return (
+    
     <div className="generate-questions-form">
-      <form onSubmit={handleSubmit}>
-        <Button type="submit" variant="contained">New Questions</Button>
-        <div className="question-input">
-          <input type="text" placeholder="10" value={numOfQuestionsInput} maxLength="2" size="2" id="num-of-questions-box" onChange={handleNumInput}/>
-          <label htmlFor="num-of-questions-box"> Questions</label>
+      <div className="LatitudeLongtiudeData">
+          <Typography variant="subtitle1">
+            Latitude: {props.data.lat}
+          </Typography>
+          <Typography variant="subtitle1">
+            Longitude: {props.data.lon}
+          </Typography>
         </div>
-        <Select name="category-selection" id="category-selection" defaultValue={0} onChange={handleCategoryChange}>
-          <MenuItem value={0} key={0}> All Categories </MenuItem>
-          {allCategories.map((category) => <MenuItem value={category.id} key={category.id}> {category.name} </MenuItem>)}
-        </Select>
+      <form onSubmit={handleSubmit}>
+        <Button type="submit" variant="contained">Submit</Button>
+        <div className="TextField">
+          <TextField id="filled-basic" label="Zip Code" variant="filled" onChange={handleZipCode}/>
+          <TextField id="filled-basic" label="Country Code (ex: US)" variant="filled" onChange={handleCountryCode}/>
+        </div>
       </form>
     </div>
   )
