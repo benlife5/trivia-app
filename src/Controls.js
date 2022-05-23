@@ -62,6 +62,7 @@ function Controls(props) {
         <Button type="submit" variant="contained">Submit</Button>
         <div className="TextField">
           <TextField id="filled-basic" label="Zip Code" variant="filled" onChange={handleZipCode}/>
+          <br></br>
           <TextField id="filled-basic" label="Country Code (ex: US)" variant="filled" onChange={handleCountryCode}/>
         </div>
       </form>
